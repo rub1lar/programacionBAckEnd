@@ -1,1 +1,1 @@
-[{"id":0,"code":1,"title":"manzana","description":"xxxx","price":1200,"thumbnail":"#.jpg","stock":2},{"id":1,"code":2,"title":"pera","description":"xxxx","price":1020,"thumbnail":"#.jpg","stock":3}]
+[{"id":0,"code":1,"title":"manzana","description":"xxxx","price":1200,"thumbnail":"#.jpg","stock":2},{"0":"p","1":"e","2":"r","3":"a","id":1,"code":2,"title":"pera","description":"xxxx","price":1020,"thumbnail":"#.jpg","stock":3}]

@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 class ProductManager {
   #path = "./ProductosVerduleria.json";
@@ -31,11 +31,10 @@ class ProductManager {
     if (code && title && description && price && thumbnail && stock) {
       console.log(await "info completa gracias");
     } else {
-      console.log(
-        await `falta informacion , 
+      throw `falta informacion , 
            agregar todos los campos:
           code || title || description || price || thumbnail || stock`
-      );
+      ;
     }
     //revisar que no existe codigo
     let products = await this.getProducts();
@@ -43,7 +42,7 @@ class ProductManager {
     if (!chk) {
       console.log(`no existe codigo: ${code} ===> SE CREARA NUEVO PRODUCTO`);
       const newProduct = {
-        id: this.idAcum++,
+        id: this.idAcum,
         code,
         title,
         description,
@@ -53,6 +52,7 @@ class ProductManager {
       };
       products = [...products, newProduct];
       await fs.promises.writeFile(this.#path, JSON.stringify(products));
+      this.idAcum++
     } else {
       console.log(`Ya existe el codigo ${code} y NO SE CREARA PRODUCTO`);
     }
@@ -89,6 +89,27 @@ class ProductManager {
         console.log("error al borrar");
     }
   }
+
+
+/* 
+  async updateProdById(id, data) {
+
+    const products = await this.getProducts();
+
+    const updateProducts = products.map ((p)=>{
+      if (p.id ===id){
+        return {
+          ...p,
+          ...data,
+          id,
+        };
+      }
+      return p;
+    } );
+     */
+
+
+
 
   async updateProdById(id, keyToUpdate, dataUpdate) {
     if (!id || !keyToUpdate || !dataUpdate) {
@@ -163,7 +184,7 @@ class ProductManager {
     }
   }
 }
-
+/* 
 async function test() {
   //productos vacio
   const item = new ProductManager();
@@ -177,4 +198,7 @@ async function test() {
   await item.updateProdById(1, "title", "pera");
 //   await item.deleteProdById(1);
 }
-test();
+test(); */
+
+
+export default ProductManager;
